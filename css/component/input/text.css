@@ -1,0 +1,15 @@
+.text-input {
+    height: 36px;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    padding-left: 12px;
+    padding-right: 12px;
+    outline: none;
+    border: 1px solid var(--outline);
+    border-radius: 2px;
+    width: 100%;
+}
+
+.text-input:focus {
+    border-color: var(--button-color);
+}

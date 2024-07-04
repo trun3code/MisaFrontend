@@ -1,0 +1,83 @@
+.header {
+    width: 100%;
+    margin-left: var(--sidebar-width);
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #eff2f6;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #fff;
+}
+
+.logo-wrapper {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.logo {
+    width: 120px;
+    margin-right: 15px;
+}
+
+.sidebar-header-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background: url(../../assets/img/Sprites.64af8f61.svg) no-repeat;
+}
+
+.submenu-item {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-position: -842px -30px;
+    margin-right: 4px;
+}
+
+.company-name {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color:black;
+}
+
+.more-btn {
+    width: 24px;
+    height: 24px;
+    background-position: -1123px -356px;
+}
+
+.more-btn.small {
+    background-position: -460px -405px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    margin-right: 4px;
+    border-radius: 50%;
+}
+
+.username {
+    font-size: 1.3rem;
+    font-weight: 1.7rem;
+    color:black;
+}
+
+.shortened-sidebar-btn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    margin-left: 10 px;
+    background-position: -424px -88px;
+}

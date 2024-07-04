@@ -1,0 +1,98 @@
+.sidebar {
+    margin-top: var(--header-height);
+    overflow-y: scroll;
+    height: calc(100vh - var(--header-height));
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0D0833;
+    transition: all 0.1s linear;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 4px;
+}
+
+.sidebar-btn {
+    height: 44px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: #fff;
+    border: none;
+    background-color: #0D0833;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.sidebar-menu-item {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    font-weight: 700;
+    margin-left: 12px
+}
+
+.sidebar-btn.active, .sidebar-btn:hover {
+    background-color: #66AFFF;
+}
+
+.sidebar-icon {
+    width: 16px;
+    height: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.sidebar-content {
+    margin-top: 12px;
+    padding: 0 12px 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap; /* Ngăn các nút xuống dòng */
+    align-items: flex-start; /* Căn lề trên của các nút */
+}
+
+.sidebar.shortened {
+    width: var(--shortened-sidebar-width);
+}
+
+.sidebar-menu-item.appear {
+    animation: appear 0.4s linear;
+}
+
+
+
+.sidebar-btn:nth-child(3),
+.sidebar-btn:nth-child(3):hover {
+    background-color: #66AFFF; /* Màu nền tùy chỉnh */
+}
+.sidebar-btn:nth-child(1) {
+    background-color: #0D0833; /* Màu nền khi hover cho nút Trang chủ */
+    color: #fff; /* Màu chữ khi hover */
+}
+
+.sidebar-btn:nth-child(1):hover {
+    background-color: #66AFFF; /* Màu nền khi hover cho nút Trang chủ */
+    color: #fff; /* Màu chữ khi hover */
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,15 @@
+.radio-input {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--outline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    accent-color: var(--button-color);
+}
+
+.radio-input + .label-name {
+    margin-right: 16px;
+    margin-left: 8px;
+}

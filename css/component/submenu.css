@@ -1,0 +1,45 @@
+.submenu-container {
+    position: relative;
+}
+
+.submenu {
+    right: 10px;
+    top: 0;
+    min-width: 132px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    list-style: none;
+    background-color: #fff;
+    border: 2px solid var(--outline);
+    z-index: 2;
+}
+
+.submenu li {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    display: flex;
+    color: #000;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px;
+    height: 36px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.submenu li:hover {
+    background-color: var(--primary-color);
+}
+
+.submenu::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-99%);
+}

@@ -1,0 +1,30 @@
+.layout {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.row.pd-6 {
+    margin-right: -6px;
+    margin-left: -6px;
+}
+
+.row.pd-6 .col {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.col {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.col-25 {
+    width: 25%;
+}
+

@@ -1,0 +1,55 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.total, .total strong {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+}
+
+.row-per-page {
+    position: relative;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    border: 2px solid var(--outline);
+    padding: 8px;
+    margin-right: 12px;
+}
+
+.row-per-page .value{
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    margin-right: 32px;
+}
+
+.triangle-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    background-position: -552px -351px;
+}
+
+.triangle-down:hover {
+    background-color: var(--primary-color);
+}
+
+.page-container span {
+    font-size: 1.3rem;
+    line-height: 1.7rem;
+    padding: 4px;
+}
+
+.page.active {
+    border: 2px solid var(--primary-color);
+}
+
+.dots {
+    margin-left: 4px;
+}

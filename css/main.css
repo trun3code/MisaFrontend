@@ -1,0 +1,68 @@
+@import url(./list-page.css);
+
+
+:root {
+    --primary-color: #CEEAD9;
+    --button-color: #089740;
+    --outline: #E0E0E0;
+    --button-outline: #000;
+    --button-click: #055B27;
+    --blue-color: #3395FF;
+    --sidebar-width: 212px;
+    --header-height: 56px;
+    --shortened-sidebar-width: 78px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+@font-face {
+    font-family: NotoBold;
+    src: url(../assets/fonts/notosans-bold.3ede5aff.woff2);
+}
+
+@font-face {
+    font-family: NotoRegular;
+    src: url(../assets/fonts/notosans-regular.2cb88a13.woff2);
+}
+
+body {
+    font-family: NotoRegular;
+}
+
+.app {
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: 4px;
+  }
+  
+
+.blue-color {
+    color: var(--blue-color );
+}
+
+.hidden {
+    display: none;
+}
+
+.disable {
+    opacity: 0.6;
+}
