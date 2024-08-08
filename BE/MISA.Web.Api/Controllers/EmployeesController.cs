@@ -57,7 +57,13 @@ namespace MISA.Web.Api.Controllers
             try
             {
                 var employee = Connection.Get<Employee>(employeeId);
-                return employee == null ? NotFound() : Ok(employee);
+                if (employee == null) 
+                    return NotFound();
+                var position = Connection.Get<Position>(employee.PositionId);
+                var department = Connection.Get<Department>(employee.DepartmentId);
+                employee.Position = position;
+                employee.Department = department;
+                return Ok(employee);
             }
             catch (Exception ex)
             {
@@ -106,7 +112,7 @@ namespace MISA.Web.Api.Controllers
             try
             {
                 var connection = Connection;
-                if(connection.Get<Employee>(employeeId)==null)
+                if (connection.Get<Employee>(employeeId) == null)
                     return NotFound();
                 var errorData = new List<string>();
                 // Kiểm tra các thuộc tính có null hay không hoặc có sai định dạng hay không 
@@ -162,7 +168,7 @@ namespace MISA.Web.Api.Controllers
                     errorData.Add("IdentifyNumber Empty");
                 if (errorData.Count > 0)
                     return BadRequest(errorData);
-                employee.EmployeeID = Guid.NewGuid();
+                employee.EmployeeId = Guid.NewGuid();
                 long identity = Connection.Insert(employee);
                 if (identity > 0)
                     return StatusCode(201);

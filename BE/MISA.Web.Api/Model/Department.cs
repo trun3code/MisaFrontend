@@ -5,7 +5,7 @@ namespace MISA.Web.Api.Model
     public class Department
     {
         [Dapper.Contrib.Extensions.Key]
-        public Guid DepartmentID { get; set; }
+        public Guid DepartmentId { get; set; }
         [Required] public string? DepartmentName { get; set; }
         [Required] public string? DepartmentCode { get; set; }
         public DateTime? CreatedDate { get; set; }

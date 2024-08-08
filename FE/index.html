@@ -1,301 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"> -->
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="shortcut icon" href="./assets/img/cukcuk-logo.png" type="image/x-icon">
-    <title>CUKCUK </title>
-</head>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/cukcuk-logo.png"
+      type="image/x-icon"
+    />
+    <title>CUKCUK</title>
+  </head>
 
-<body>
+  <body>
     <div class="app">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-content">
-                <button class="sidebar-btn active">
-                    <span class="sidebar-icon">
-                        <img src="assets/img/home-icon.png" alt="Home Icon">
-                    </span>
-                    <span class="sidebar-menu-item">
-                        Trang chủ
-                    </span>
-                </button>
-                <button class="sidebar-btn">
-                    <span class="sidebar-icon">
-                        <img src="assets/img/report-icon.png" alt="Report Icon">
-                    </span>
-                    <span class="sidebar-menu-item">
-                        Báo cáo
-                    </span>
-                </button>
-                <button class="sidebar-btn">
-                    <span class="sidebar-icon">
-                        <img src="assets/img/employee-icon.png" alt="Employee Icon">
-                    </span>
-                    <span class="sidebar-menu-item">
-                        Nhân viên
-                    </span>
-                </button>
-                <button class="sidebar-btn">
-                    <span class="sidebar-icon">
-                        <img src="assets/img/settings-icon.png" alt="Settings Icon">
-                    </span>
-                    <span class="sidebar-menu-item">
-                        Cài đặt
-                    </span>
-                </button>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-content">
+          <button class="sidebar-btn active">
+            <span class="sidebar-icon">
+              <img src="assets/img/home-icon.png" alt="Home Icon" />
+            </span>
+            <span class="sidebar-menu-item"> Trang chủ </span>
+          </button>
+          <button class="sidebar-btn">
+            <span class="sidebar-icon">
+              <img src="assets/img/report-icon.png" alt="Report Icon" />
+            </span>
+            <span class="sidebar-menu-item"> Báo cáo </span>
+          </button>
+          <button class="sidebar-btn">
+            <span class="sidebar-icon">
+              <img src="assets/img/employee-icon.png" alt="Employee Icon" />
+            </span>
+            <span class="sidebar-menu-item"> Nhân viên </span>
+          </button>
+          <button class="sidebar-btn">
+            <span class="sidebar-icon">
+              <img src="assets/img/settings-icon.png" alt="Settings Icon" />
+            </span>
+            <span class="sidebar-menu-item"> Cài đặt </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-wrapper">
+          <img
+            class="shortened-sidebar-btn icon"
+            src="./assets/img/toggle.png"
+            alt="Shortened Sidebar Button"
+          />
+          <img class="logo" src="./assets/img/cukcuk-logo.png" alt="" />
+        </div>
+        <h3 class="company-name">Chi nhánh Hà Nội</h3>
+        <span class="more-btn icon"></span>
+        <span class="noti-btn icon"></span>
+        <img src="./assets/img/avatar.png" alt="avatar" class="avatar" />
+        <span class="username">Vương Danh Trung</span>
+        <span class="more-btn icon small"></span>
+      </div>
+
+      <!-- Container -->
+      <div class="container">
+        <section class="header-section">
+          <h3>Nhân viên</h3>
+          <button class="btn add-empl">Thêm mới</button>
+        </section>
+        <section class="content-section">
+          <div class="search-empl">
+            <div class="search-box">
+              <span class="search-icon"></span>
+              <input
+                class="text-input search-input"
+                placeholder="Tìm theo mã, tên nhân viên"
+                type="text"
+              />
             </div>
-        </div>
-        
-
-        <!-- Header -->
-        <div class="header">
-            <div class="logo-wrapper">
-                <img class="shortened-sidebar-btn icon" src="./assets/img/toggle.png" alt="Shortened Sidebar Button">
-                <img class="logo" src="./assets/img/cukcuk-logo.png" alt="">
+            <span title="Làm mới" class="reload-icon"></span>
+          </div>
+          <div class="table-container">
+            <table class="table">
+              <tr class="table-header">
+                <th>Số thứ tự</th>
+                <th>Mã nhân viên</th>
+                <th>Họ và tên</th>
+                <th>Giới tính</th>
+                <th class="tb-center">Ngày sinh</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th>Chức năng</th>
+              </tr>
+              <tbody>
+                <!-- Dữ liệu nhân viên sẽ được thêm vào đây -->
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <div class="total">Tổng số: <strong></strong> bản ghi</div>
+            <div class="row-per-page">
+              <span class="value">10 bản ghi trên 1 trang</span>
+              <span class="icon triangle-down"></span>
             </div>
-            <h3 class="company-name">Chi nhánh Hà Nội</h3>
-            <span class="more-btn icon"></span>
-            <span class="noti-btn icon"></span>
-            <img src="./assets/img/avatar.png" alt="avatar" class="avatar">
-            <span class="username">Vương Danh Trung</span>
-            <span class="more-btn icon small"></span>
-        </div>
+            <div class="page-container">
+              <span class="disable">Trước</span>
+              <span class="page active">1</span>
+              <span class="page">2</span>
+              <span class="page">3</span>
+              <span class="dots">...</span>
+              <span class="page">52</span>
+              <span>Sau</span>
+            </div>
+          </div>
+        </section>
+      </div>
 
-        <!-- Container -->
-        <div class="container">
-            <section class="header-section">
-                <h3>Nhân viên</h3>
-                <button class="btn add-empl">
-                    Thêm mới
-                </button>
-            </section>
-            <section class="content-section">
-                <div class="search-empl">
-                    <div class="search-box">
-                        <span class="search-icon"></span>
-                        <input class="text-input search-input" placeholder="Tìm theo mã, tên nhân viên" type="text">
-                    </div>
-                    <span title="Làm mới" class="reload-icon"></span>
-                </div>
-                <div class="table-container">
-                    <table class="table">
-                        <tr class="table-header">
-                            <th>Số thứ tự</th>
-                            <th>Mã nhân viên</th>
-                            <th>Họ và tên</th>
-                            <th>Giới tính</th>
-                            <th class="tb-center">Ngày sinh</th>
-                            <th>Email</th>
-                            <th>Địa chỉ</th>
-                            <th >Chức năng</th>
-                        </tr>
-                        <tbody>
-                            <!-- Dữ liệu nhân viên sẽ được thêm vào đây -->
-                        </tbody>
-                        
-                    </table>
-
-                </div>
-                <div class="pagination">
-                    <div class="total">Tổng số: <strong></strong> bản ghi</div>
-                    <div class="row-per-page">
-                        <span class="value">10 bản ghi trên 1 trang</span>
-                        <span class="icon triangle-down" ></span>
-                    </div>
-                    <div class="page-container">
-                        <span class="disable">Trước</span>
-                        <span class="page active">1</span>
-                        <span class="page">2</span>
-                        <span class="page">3</span>
-                        <span class="dots">...</span>
-                        <span class="page">52</span>
-                        <span>Sau</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Modal -->
-<div class="modal hidden">
-    <div class="modal-content">
-        <div class="modal-title-bar">
+      <!-- Modal -->
+      <div class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-title-bar">
             <span title="Trợ giúp" class="help-btn"></span>
             <span title="Đóng" class="close-btn"></span>
-        </div>
-        <div class="modal-header">
-            <h3>Thông tin nhân viên</h3>
-        </div>
-        <div class="layout">
+          </div>
+          <div class="modal-header">
+            <h3></h3>
+          </div>
+          <div class="layout">
             <div class="row">
-                <div class="col col-5">
-                    <div class="row pd-6">
-                        <div class="col col-4 ">
-                            <div class="label">
-                                <label class="label-name" for="">Mã nhân viên</label>
-                                <div class="required">*</div>
-                            </div>
-                            <input required class="text-input" type="text" name="employeeCode">
-                        </div>
-                        <div class="col col-6 pd-6">
-                            <div class="label">
-                                <label class="label-name" for="">Họ và tên</label>
-                                <div class="required">*</div>
-                            </div>
-                            <input required class="text-input" type="text" name="fullName">
-                        </div>
+              <div class="col col-5">
+                <div class="row pd-6">
+                  <div class="col col-4 hidden">
+                    <div class="label">
+                      <label class="label-name"></label>
+                      <div class="required">*</div>
                     </div>
-                    <div class="row">
-                        <div class="col col-10">
-                            <div class="label">
-                                <label class="label-name" for="">Vị trí</label>
-                                <div class="required"></div>
-                            </div>
-                            <input required class="text-input" type="text" name="position">
-                        </div>
+                    <input
+                      required
+                      class="text-input"
+                      type="text"
+                      name="employeeId"
+                      id="employee-id"
+                    />
+                  </div>
+                  <div class="col col-4">
+                    <div class="label">
+                      <label
+                        class="label-name employee-code"
+                        for="employee-code"
+                        >Mã nhân viên</label
+                      >
+                      <div class="required">*</div>
                     </div>
-                    <div class="row">
-                        <div class="col col-10">
-                            <div class="label">
-                                <label class="label-name" for="">Phòng ban</label>
-                            </div>
-                            <input class="text-input" type="text" name="department">
-                        </div>
+                    <input
+                      required
+                      class="text-input"
+                      type="text"
+                      name="employeeCode"
+                      id="employee-code"
+                    />
+                  </div>
+                  <div class="col col-6 pd-6">
+                    <div class="label">
+                      <label class="label-name" for="">Họ và tên</label>
+                      <div class="required">*</div>
                     </div>
+                    <input
+                      required
+                      class="text-input"
+                      type="text"
+                      name="fullName"
+                    />
+                  </div>
                 </div>
-                <div class="col col-5">
-                    <div class="row pd-6">
-                        <div class="col col-4">
-                            <div class="label">
-                                <label class="label-name" for="">Ngày sinh</label>
-                            </div>
-                            <input class="text-input" type="date" name="dateOfBirth">
-                        </div>
-                        <div class="col col-6">
-                            <div class="label">
-                                <label class="label-name" for="">Giới tính</label>
-                            </div>
-                            <div class="input-wrapper">
-                                <input type="radio" class="radio-input" name="gender" value="Nam" id="male">
-                                <label class="label-name" for="male">Nam</label>
-                                <input type="radio" class="radio-input" name="gender" value="Nữ" id="female">
-                                <label class="label-name" for="female">Nữ</label>
-                                <input type="radio" class="radio-input" name="gender" value="Khác" id="other">
-                                <label class="label-name" for="other">Khác</label>
-                            </div>
-                        </div>
+                <div class="row">
+                  <div class="col col-10">
+                    <div class="label">
+                      <label class="label-name" for="">Vị trí</label>
+                      <div class="required"></div>
                     </div>
-                    <div class="row pd-6">
-                        <div class="col col-6">
-                            <div class="label">
-                                <label title="Số chứng minh nhân dân" class="label-name" for="">Số CMND</label>
-                            </div>
-                            <input class="text-input" type="text" name="identityNumber">
-                        </div>
-                        <div class="col col-4">
-                            <div class="label">
-                                <label class="label-name" for="">Ngày cấp</label>
-                            </div>
-                            <input class="text-input" type="date" name="identityDate">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-10">
-                            <div class="label">
-                                <label class="label-name" for="">Nơi cấp</label>
-                            </div>
-                            <input class="text-input" type="text" name="identityPlace">
-                        </div>
-                    </div>
+                    <input
+                      required
+                      class="text-input"
+                      type="text"
+                      name="position"
+                    />
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col col-10">
+                    <div class="label">
+                      <label class="label-name" for="">Phòng ban</label>
+                    </div>
+                    <input class="text-input" type="text" name="department" />
+                  </div>
+                </div>
+              </div>
+              <div class="col col-5">
+                <div class="row pd-6">
+                  <div class="col col-4">
+                    <div class="label">
+                      <label class="label-name" for="">Ngày sinh</label>
+                    </div>
+                    <input class="text-input" type="date" name="dateOfBirth" />
+                  </div>
+                  <div class="col col-6">
+                    <div class="label">
+                      <label class="label-name" for="">Giới tính</label>
+                    </div>
+                    <div class="input-wrapper">
+                      <input
+                        type="radio"
+                        class="radio-input"
+                        name="gender"
+                        value="Nam"
+                        id="male"
+                      />
+                      <label class="label-name" for="male">Nam</label>
+                      <input
+                        type="radio"
+                        class="radio-input"
+                        name="gender"
+                        value="Nữ"
+                        id="female"
+                      />
+                      <label class="label-name" for="female">Nữ</label>
+                      <input
+                        type="radio"
+                        class="radio-input"
+                        name="gender"
+                        value="Khác"
+                        id="other"
+                      />
+                      <label class="label-name" for="other">Khác</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pd-6">
+                  <div class="col col-6">
+                    <div class="label">
+                      <label
+                        title="Số chứng minh nhân dân"
+                        class="label-name"
+                        for=""
+                        >Số CMND</label
+                      >
+                    </div>
+                    <input
+                      class="text-input"
+                      type="text"
+                      name="identityNumber"
+                    />
+                  </div>
+                  <div class="col col-4">
+                    <div class="label">
+                      <label class="label-name" for="">Ngày cấp</label>
+                    </div>
+                    <input class="text-input" type="date" name="identityDate" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-10">
+                    <div class="label">
+                      <label class="label-name" for="">Nơi cấp</label>
+                    </div>
+                    <input
+                      class="text-input"
+                      type="text"
+                      name="identityPlace"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <br>
+            <br />
             <div class="row">
-                <div class="col col-10">
-                    <div class="row pd-6">
-                        <div class="col col-10">
-                            <div class="label">
-                                <label class="label-name" for="">Địa chỉ</label>
-                            </div>
-                            <input class="text-input" type="text" name="address">
-                        </div>
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">ĐT di động</label>
-                            </div>
-                            <input class="text-input" type="text" name="mobilePhone">
-                        </div>
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">ĐT cố định</label>
-                            </div>
-                            <input class="text-input" type="text" name="homePhone">
-                        </div>
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">Email</label>
-                            </div>
-                            <input class="text-input" type="text" name="email">
-                        </div>
+              <div class="col col-10">
+                <div class="row pd-6">
+                  <div class="col col-10">
+                    <div class="label">
+                      <label class="label-name" for="">Địa chỉ</label>
                     </div>
-                    <div class="row pd-6">
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">Tài khoản ngân hàng</label>
-                            </div>
-                            <input class="text-input" type="text" name="bankAccount">
-                        </div>
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">Tên ngân hàng</label>
-                            </div>
-                            <input class="text-input" type="text" name="bankName">
-                        </div>
-                        <div class="col col-25">
-                            <div class="label">
-                                <label class="label-name" for="">Chi nhánh</label>
-                            </div>
-                            <input class="text-input" type="text" name="bankBranch">
-                        </div>
+                    <input class="text-input" type="text" name="address" />
+                  </div>
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for="">ĐT di động</label>
                     </div>
+                    <input class="text-input" type="text" name="mobilePhone" />
+                  </div>
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for="">ĐT cố định</label>
+                    </div>
+                    <input class="text-input" type="text" name="homePhone" />
+                  </div>
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for="">Email</label>
+                    </div>
+                    <input class="text-input" type="text" name="email" />
+                  </div>
                 </div>
+                <div class="row pd-6">
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for=""
+                        >Tài khoản ngân hàng</label
+                      >
+                    </div>
+                    <input class="text-input" type="text" name="bankAccount" />
+                  </div>
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for="">Tên ngân hàng</label>
+                    </div>
+                    <input class="text-input" type="text" name="bankName" />
+                  </div>
+                  <div class="col col-25">
+                    <div class="label">
+                      <label class="label-name" for="">Chi nhánh</label>
+                    </div>
+                    <input class="text-input" type="text" name="bankBranch" />
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="modal-footer">
+          </div>
+          <div class="modal-footer">
             <button class="btn outline">Hủy</button>
             <button class="btn">Cất</button>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
 
-        <!-- Noti -->
-        <div class="modal hidden">
-            <div class="modal-content noti-modal">
-                <div class="noti-content">
-                    <span class="icon warning-icon"></span>
-                    Mã nhân viên 9420 đã tồn tại
-                </div>
-                <button class="btn noti-btn">Đồng ý</button>
+      <!-- Noti -->
+      <div class="modal hidden">
+        <div class="modal-content noti-modal">
+          <div class="noti-content">
+            <span class="icon warning-icon"></span>
+            Mã nhân viên 9420 đã tồn tại
+          </div>
+          <button class="btn noti-btn">Đồng ý</button>
+        </div>
+      </div>
+
+      <!-- Toast message -->
+      <div class="toast-container hidden">
+        <span class="toast-icon success icon"></span>
+        <h5 class="toast-title success">Thành công!&nbsp</h5>
+        <p class="toast-body-text">Công việc đã xóa.</p>
+        <span class="toast-action">Hoàn tác</span>
+        <span class="toast-close-icon icon"></span>
+      </div>
+      <!-- Delete Modal  -->
+      <div class="modal hidden">
+        <div class="delete-modal hidden">
+            <p>Bạn có chắc muốn xóa nhân viên</p>
+            <div class="delete-modal-btn">
+                <button class="btn yes-btn">Có</button>
+                <button class="btn no-btn">Không</button>
             </div>
         </div>
+      </div>
 
-        <!-- Toast message -->
-        <div class="toast-container hidden">
-            <span class="toast-icon success icon"></span>
-            <h5 class="toast-title success">Thành công!&nbsp</h5>
-            <p class="toast-body-text">Công việc đã xóa.</p>
-            <span class="toast-action">Hoàn tác</span>
-            <span class="toast-close-icon icon"></span>
-        </div>
     </div>
-
-
-
-
     <script src="./js/list-page.js"></script>
-</body>
-
+  </body>
 </html>

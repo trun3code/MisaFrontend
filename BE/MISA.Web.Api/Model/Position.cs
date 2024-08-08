@@ -6,7 +6,7 @@ namespace MISA.Web.Api.Model
     public class Position
     {
         [Dapper.Contrib.Extensions.Key] 
-        public Guid PositionID { get; set; }
+        public Guid PositionId { get; set; }
         [Required] public string? PositionName { get; set; }
         [Required] public string? PositionCode { get; set; }
         public DateTime? CreatedDate { get; set; }
