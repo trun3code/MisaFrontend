@@ -18,3 +18,24 @@
     position: absolute;
     padding: 24px 36px;
 }
+
+.delete-modal {
+    width: 40rem;
+    background-color: #fff;
+    border-radius: 4px;
+    position: absolute;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.delete-modal p{
+    font-size: medium;
+}
+
+.no-btn {
+    background-color: red;
+}
