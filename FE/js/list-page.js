@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // 1. Khởi tạo và Cấu hình
 
-  const apiService = "https://localhost:7298/api/v1/Employees";
+  const employeeApiService = "https://localhost:7298/api/v1/Employees";
+  const positionApiService = "https://localhost:7298/api/v1/Positions";
+  const departmentApiService = "https://localhost:7298/api/v1/Departments";
 
   const state = {
     allEmployees: [],
     itemsPerPage: 10,
     currentPage: 1,
   };
-
   const domElements = {
     addEmplBtn: document.querySelector(".add-empl"),
     modal: document.querySelector(".modal"),
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const employeeManagement = {
     getEmployees: async () => {
       try {
-        const response = await fetch(apiService);
+        const response = await fetch(employeeApiService);
         if (!response.ok) throw new Error("Network response was not ok");
         state.allEmployees = await response.json();
         return state.allEmployees;
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
     getEmployeeDetails: async (employeeId) => {
       try {
-        const response = await fetch(`${apiService}/${employeeId}`);
+        const response = await fetch(`${employeeApiService}/${employeeId}`);
         if (!response.ok) throw new Error("Network response was not ok");
         return await response.json();
       } catch (error) {
@@ -80,12 +81,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     clearEmployeeModal: () => {
       document.querySelector('input[name="employeeCode"]').value = "";
       document.querySelector('input[name="fullName"]').value = "";
-      document.querySelector('input[name="position"]').value = "";
-      document.querySelector('input[name="department"]').value = "";
       document.querySelector('input[name="dateOfBirth"]').value = "";
-
+      document.querySelector('input[name="employeeId"]').value ="";
+      document.getElementById("position").selectedIndex = 0;
+      document.getElementById("department").selectedIndex = 0;
       const genderInputs = document.querySelectorAll('input[name="gender"]');
       genderInputs.forEach((input) => (input.checked = false));
+      document.querySelector('input[name="gender"]').checked = true;
 
       document.querySelector('input[name="identityNumber"]').value = "";
       document.querySelector('input[name="identityDate"]').value = "";
@@ -117,17 +119,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <td>${employee.FullName}</td>
                     <td>${employee.GenderName}</td>
                     <td class="tb-center">${new Date(
-                      employee.DateOfBirth
-                    ).toLocaleDateString("vi-VN")}</td>
+          employee.DateOfBirth
+        ).toLocaleDateString("vi-VN")}</td>
                     <td>${employee.Email}</td>
                     <td>${employee.Address}</td>
                     <td>
-                        <button class="edit-btn" data-id="${
-                          employee.EmployeeId
-                        }">Sửa</button>
-                        <button class="delete-btn" data-id="${
-                          employee.EmployeeId
-                        }" data-staff-id="${employee.EmployeeCode}">
+                        <button class="edit-btn" data-id="${employee.EmployeeId
+          }">Sửa</button>
+                        <button class="delete-btn" data-id="${employee.EmployeeId
+          }" data-staff-id="${employee.EmployeeCode}">
                             Xóa
                         </button>
                     </td>
@@ -139,15 +139,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
     fillEmployeeModal: (employee) => {
       document.querySelector('input[name="employeeId"]').value =
-      employee.EmployeeId || "";
+        employee.EmployeeId || "";
       document.querySelector('input[name="employeeCode"]').value =
         employee.EmployeeCode || "";
       document.querySelector('input[name="fullName"]').value =
         employee.FullName || "";
-      document.querySelector('input[name="position"]').value =
-        employee.PositionName || "";
-      document.querySelector('input[name="department"]').value =
-        employee.DepartmentName || "";
+      document.getElementById("position").value = employee.PositionId;
+      document.getElementById("department").value = employee.DepartmentId;
+      // document.querySelector('input[name="position"]').value =
+      //   employee.Position.PositionName || "";
+      // document.querySelector('input[name="department"]').value =
+      //   employee.Department.DepartmentName || "";
       document.querySelector('input[name="dateOfBirth"]').value =
         employee.DateOfBirth
           ? new Date(employee.DateOfBirth).toISOString().split("T")[0]
@@ -202,48 +204,47 @@ document.addEventListener("DOMContentLoaded", async function () {
         ui.openDeleteModal(employeeId, staffId)
       }
     },
-    saveEmployeeChanges: async () => {
+    saveEmployee: async (method) => {
       const employeeData = {
-        employeeId : document.querySelector('input[name="employeeId"]').value,
+        EmployeeId: document.querySelector('input[name="employeeId"]').value || null,
         EmployeeCode: document.querySelector('input[name="employeeCode"]')
-          .value,
-        FullName: document.querySelector('input[name="fullName"]').value,
-        PositionName: document.querySelector('input[name="position"]').value,
-        DepartmentName: document.querySelector('input[name="department"]')
-          .value,
-        DateOfBirth: document.querySelector('input[name="dateOfBirth"]').value,
-        GenderName: document.querySelector('input[name="gender"]:checked')
-          .value,
+          .value || null,
+        FullName: document.querySelector('input[name="fullName"]').value || null,
+        PositionId: document.getElementById('position').value || null,
+        DepartmentId: document.getElementById('department').value || null,
+        DateOfBirth: document.querySelector('input[name="dateOfBirth"]').value || null,
+        Gender: parseInt(document.querySelector('input[name="gender"]:checked').id),
         IdentityNumber: document.querySelector('input[name="identityNumber"]')
-          .value,
+          .value || null,
         IdentityDate: document.querySelector('input[name="identityDate"]')
-          .value,
+          .value || null,
         IdentityPlace: document.querySelector('input[name="identityPlace"]')
-          .value,
-        Address: document.querySelector('input[name="address"]').value,
-        PhoneNumber: document.querySelector('input[name="mobilePhone"]').value,
+          .value || null,
+        Address: document.querySelector('input[name="address"]').value || null,
+        PhoneNumber: document.querySelector('input[name="mobilePhone"]').value || null,
         TelephoneNumber: document.querySelector('input[name="homePhone"]')
-          .value,
-        Email: document.querySelector('input[name="email"]').value,
+          .value || null,
+        Email: document.querySelector('input[name="email"]').value || null,
         BankAccountNumber: document.querySelector('input[name="bankAccount"]')
-          .value,
-        BankName: document.querySelector('input[name="bankName"]').value,
+          .value || null,
+        BankName: document.querySelector('input[name="bankName"]').value || null,
         BankBranchName: document.querySelector('input[name="bankBranch"]')
-          .value,
+          .value || null,
       };
-
+      console.log(employeeData);
+      var url = employeeApiService;
+      if (method === "PUT")
+        url += "/" + employeeData.EmployeeId;
       try {
-        const response = await fetch(
-          `${apiService}/${employeeData.employeeId}`,
+        const response = await fetch(url,
           {
-            method: "PUT",
+            method: method,
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(employeeData),
           }
         );
-
         if (!response.ok) throw new Error("Network response was not ok");
 
         ui.showToast("Cập nhật thông tin nhân viên thành công");
@@ -258,47 +259,48 @@ document.addEventListener("DOMContentLoaded", async function () {
         ui.showToast("Không thể cập nhật thông tin nhân viên", "error");
       }
     },
-    addNewEmployee: async () => {
-      const employeeData = {
-        EmployeeCode: document.querySelector('input[name="employeeCode"]').value,
-        FullName: document.querySelector('input[name="fullName"]').value,
-        PositionName: document.querySelector('input[name="position"]').value,
-        DepartmentName: document.querySelector('input[name="department"]').value,
-        DateOfBirth: document.querySelector('input[name="dateOfBirth"]').value,
-        GenderName: document.querySelector('input[name="gender"]:checked')?.value || '',
-        IdentityNumber: document.querySelector('input[name="identityNumber"]').value,
-        IdentityDate: document.querySelector('input[name="identityDate"]').value,
-        IdentityPlace: document.querySelector('input[name="identityPlace"]').value,
-        Address: document.querySelector('input[name="address"]').value,
-        PhoneNumber: document.querySelector('input[name="mobilePhone"]').value,
-        TelephoneNumber: document.querySelector('input[name="homePhone"]').value,
-        Email: document.querySelector('input[name="email"]').value,
-        BankAccountNumber: document.querySelector('input[name="bankAccount"]').value,
-        BankName: document.querySelector('input[name="bankName"]').value,
-        BankBranchName: document.querySelector('input[name="bankBranch"]').value,
-      };
-    
-      try {
-        const response = await fetch(apiService, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(employeeData),
-        });
-        if (!response.ok) throw new Error("Network response was not ok");
-        ui.showToast("Tạo mới nhân viên thành công", "success");
-        ui.closeModal();
-        await employeeManagement.getEmployees();
-        employeeManagement.displayEmployees(state.allEmployees, state.currentPage);
-      } catch (error) {
-        console.error("Error:", error);
-        ui.showToast("Không thể tạo mới nhân viên", "error");
-      }
-    },
+    // addNewEmployee: async () => {
+    //   const employeeData = {
+    //     EmployeeCode: document.querySelector('input[name="employeeCode"]').value,
+    //     FullName: document.querySelector('input[name="fullName"]').value,
+    //     PositionId: document.getElementById('position').value,
+    //     DepartmentId: document.getElementById('department').value,
+    //     DateOfBirth: document.querySelector('input[name="dateOfBirth"]').value,
+    //     Gender: parseInt(document.querySelector('input[name="gender"]:checked').id),
+    //     IdentityNumber: document.querySelector('input[name="identityNumber"]').value,
+    //     IdentityDate: document.querySelector('input[name="identityDate"]').value,
+    //     IdentityPlace: document.querySelector('input[name="identityPlace"]').value,
+    //     Address: document.querySelector('input[name="address"]').value,
+    //     PhoneNumber: document.querySelector('input[name="mobilePhone"]').value,
+    //     TelephoneNumber: document.querySelector('input[name="homePhone"]').value,
+    //     Email: document.querySelector('input[name="email"]').value,
+    //     BankAccountNumber: document.querySelector('input[name="bankAccount"]').value,
+    //     BankName: document.querySelector('input[name="bankName"]').value,
+    //     BankBranchName: document.querySelector('input[name="bankBranch"]').value,
+    //   };
+    //   console.log(employeeData);
+    //   return;
+    //   try {
+    //     const response = await fetch(employeeApiService, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(employeeData),
+    //     });
+    //     if (!response.ok) throw new Error("Network response was not ok");
+    //     ui.showToast("Tạo mới nhân viên thành công", "success");
+    //     ui.closeModal();
+    //     await employeeManagement.getEmployees();
+    //     employeeManagement.displayEmployees(state.allEmployees, state.currentPage);
+    //   } catch (error) {
+    //     console.error("Error:", error);
+    //     ui.showToast("Không thể tạo mới nhân viên", "error");
+    //   }
+    // },
     removeEmployee: async (employeeId) => {
       try {
-        const response = await fetch(`${apiService}/${employeeId}`, {
+        const response = await fetch(`${employeeApiService}/${employeeId}`, {
           method: "DELETE",
         });
         if (!response.ok) throw new Error("Network response was not ok");
@@ -315,9 +317,42 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // 3. Giao diện Người dùng
   const ui = {
+    init: async () => {
+      await fetch(positionApiService)
+        .then(function (response) {
+          if (!response.ok)
+            throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then(function (data) {
+          var selectPosition = document.getElementById('position');
+          for (var i = 0; i < data.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = data[i].PositionId;
+            opt.innerHTML = data[i].PositionName;
+            selectPosition.appendChild(opt);
+          }
+        })
+      await fetch(departmentApiService)
+        .then(function (response) {
+          if (!response.ok)
+            throw new Error("Network response was not ok");
+          return response.json();
+        })
+        .then(function (data) {
+          var selectPosition = document.getElementById('department');
+          for (var i = 0; i < data.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = data[i].DepartmentId;
+            opt.innerHTML = data[i].DepartmentName;
+            selectPosition.appendChild(opt);
+          }
+        })
+    },
     openModal: (mode = "add") => {
       domElements.modal.classList.remove("hidden");
       const modalTitle = document.querySelector(".modal-header");
+
       const modalButton = document.querySelector(".modal .btn:not(.outline)");
       if (mode === "add") {
         modalTitle.textContent = "Thêm mới nhân viên";
@@ -335,7 +370,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const lastModal = domElements.modalLast
       lastModal.classList.remove("hidden")
       domElements.deleteModal.classList.remove("hidden")
-      const interHtml =  `
+      const interHtml = `
         <div class="delete-modal">
             <p>Bạn có chắc muốn xóa nhân viên ${staffId}</p>
             <div class="delete-modal-btn">
@@ -348,21 +383,20 @@ document.addEventListener("DOMContentLoaded", async function () {
       lastModal.querySelector(".no-btn").addEventListener("click", () => {
         lastModal.classList.add("hidden");
       });
-    
+
       lastModal.querySelector(".yes-btn").addEventListener("click", () => {
         employeeManagement.removeEmployee(employeeId);
         lastModal.classList.add("hidden");
       });
-    
+
     },
     showToast: (message, type = "success") => {
       let toast = document.createElement("div");
       toast.innerHTML = `
                 <div class="toast-container">
                     <span class="toast-icon ${type} icon"></span>
-                    <h5 class="toast-title ${type}">${
-        type === "success" ? "Thành công!" : "Thất bại!"
-      }&nbsp</h5>
+                    <h5 class="toast-title ${type}">${type === "success" ? "Thành công!" : "Thất bại!"
+        }&nbsp</h5>
                     <p class="toast-body-text">${message}</p>
                     <span class="toast-action">Hoàn tác</span>
                     <span class="toast-close-icon icon"></span>
@@ -378,15 +412,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let paginationHTML = `
                     <div class="total">Tổng số: <strong>${totalItems}</strong> bản ghi</div>
                     <div class="row-per-page">
-                        <span class="value">${
-                          state.itemsPerPage
-                        } bản ghi trên 1 trang</span>
+                        <span class="value">${state.itemsPerPage
+        } bản ghi trên 1 trang</span>
                         <span class="icon triangle-down"></span>
                     </div>
                     <div class="page-container">
-                        <span class="${
-                          currentPage === 1 ? "disable" : ""
-                        }" onclick="changePage(${currentPage - 1})">Trước</span>
+                        <span class="${currentPage === 1 ? "disable" : ""
+        }" onclick="changePage(${currentPage - 1})">Trước</span>
                 `;
 
       for (let i = 1; i <= totalPages; i++) {
@@ -395,18 +427,16 @@ document.addEventListener("DOMContentLoaded", async function () {
           i === totalPages ||
           (i >= currentPage - 1 && i <= currentPage + 1)
         ) {
-          paginationHTML += `<span class="page ${
-            i === currentPage ? "active" : ""
-          }" onclick="changePage(${i})">${i}</span>`;
+          paginationHTML += `<span class="page ${i === currentPage ? "active" : ""
+            }" onclick="changePage(${i})">${i}</span>`;
         } else if (i === currentPage - 2 || i === currentPage + 2) {
           paginationHTML += `<span class="dots">...</span>`;
         }
       }
 
       paginationHTML += `
-                        <span class="${
-                          currentPage === totalPages ? "disable" : ""
-                        }" onclick="changePage(${currentPage + 1})">Sau</span>
+                        <span class="${currentPage === totalPages ? "disable" : ""
+        }" onclick="changePage(${currentPage + 1})">Sau</span>
                     </div>
                 `;
 
@@ -512,6 +542,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const employees = await employeeManagement.getEmployees();
     if (employees) {
       employeeManagement.displayEmployees(employees, state.currentPage);
+      ui.init();
     }
   };
 
@@ -528,9 +559,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       ? "add"
       : "edit";
     if (mode === "add") {
-      await employeeManagement.addNewEmployee()
+      await employeeManagement.saveEmployee("POST");
     } else {
-      await employeeManagement.saveEmployeeChanges()
+      await employeeManagement.saveEmployee("PUT");
     }
     ui.closeModal();
   };

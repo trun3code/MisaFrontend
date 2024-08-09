@@ -1,7 +1,9 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using MISA.Web.Api.Model;
 using MySqlConnector;
+using System.Reflection;
 
 namespace MISA.Web.Api.Controllers
 {
@@ -57,13 +59,7 @@ namespace MISA.Web.Api.Controllers
             try
             {
                 var employee = Connection.Get<Employee>(employeeId);
-                if (employee == null) 
-                    return NotFound();
-                var position = Connection.Get<Position>(employee.PositionId);
-                var department = Connection.Get<Department>(employee.DepartmentId);
-                employee.Position = position;
-                employee.Department = department;
-                return Ok(employee);
+                return (employee == null) ? NotFound() : Ok(employee);
             }
             catch (Exception ex)
             {
@@ -120,12 +116,6 @@ namespace MISA.Web.Api.Controllers
                     errorData.Add("EmployeeCode Empty");
                 if (string.IsNullOrEmpty(employee.FullName))
                     errorData.Add("FullName Empty");
-                if (string.IsNullOrEmpty(employee.PhoneNumber))
-                    errorData.Add("PhoneNumber Empty");
-                if (string.IsNullOrEmpty(employee.Email))
-                    errorData.Add("Email Empty");
-                if (string.IsNullOrEmpty(employee.IdentityNumber))
-                    errorData.Add("IdentifyNumber Empty");
                 if (errorData.Count > 0)
                     return BadRequest(errorData);
                 bool isSuccess = Connection.Update(employee);
@@ -152,7 +142,7 @@ namespace MISA.Web.Api.Controllers
         [HttpPost]
         public IActionResult Create(Employee employee)
         {
-            try
+            //try
             {
                 var errorData = new List<string>();
                 // Kiểm tra các thuộc tính có null hay không hoặc có sai định dạng hay không 
@@ -160,25 +150,47 @@ namespace MISA.Web.Api.Controllers
                     errorData.Add("EmployeeCode Empty");
                 if (string.IsNullOrEmpty(employee.FullName))
                     errorData.Add("FullName Empty");
-                if (string.IsNullOrEmpty(employee.PhoneNumber))
-                    errorData.Add("PhoneNumber Empty");
-                if (string.IsNullOrEmpty(employee.Email))
-                    errorData.Add("Email Empty");
-                if (string.IsNullOrEmpty(employee.IdentityNumber))
-                    errorData.Add("IdentifyNumber Empty");
                 if (errorData.Count > 0)
                     return BadRequest(errorData);
                 employee.EmployeeId = Guid.NewGuid();
-                long identity = Connection.Insert(employee);
-                if (identity > 0)
-                    return StatusCode(201);
-                else
-                    return StatusCode(500);
+                string sql = "INSERT INTO Employees " +
+                    "(EmployeeId,EmployeeCode,FullName,Gender" +
+                    ",DateOfBirth,PhoneNumber,Email,Address" +
+                    ",IdentityNumber,IdentityDate,IdentityPlace,TelephoneNumber" +
+                    ",BankAccountNumber,BankName,BankBranchName" +
+                    ",PositionId,DepartmentId) " +
+                    "VALUES (@EmployeeId,@EmployeeCode,@FullName,@Gender" +
+                    ",@DateOfBirth,@PhoneNumber,@Email,@Address" +
+                    ",@IdentityNumber,@IdentityDate,@IdentityPlace,@TelephoneNumber" +
+                    ",@BankAccountNumber,@BankName,@BankBranchName" +
+                    ",@PositionId,@DepartmentId)";
+
+                Connection.Execute(sql, new
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    EmployeeCode = employee.EmployeeCode,
+                    FullName = employee.FullName,
+                    Gender = employee.Gender,
+                    DateOfBirth = employee.DateOfBirth,
+                    PhoneNumber = employee.PhoneNumber,
+                    Email = employee.Email,
+                    Address = employee.Address,
+                    IdentityNumber = employee.IdentityNumber,
+                    IdentityDate = employee.IdentityDate,
+                    IdentityPlace = employee.IdentityPlace,
+                    TelephoneNumber = employee.TelephoneNumber,
+                    BankAccountNumber = employee.BankAccountNumber,
+                    BankName = employee.BankName,
+                    BankBranchName = employee.BankBranchName,
+                    PositionId = employee.PositionId,
+                    DepartmentId = employee.DepartmentId,
+                });
+                return StatusCode(201);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, ex);
+            //}
         }
     }
 }

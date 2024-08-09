@@ -726,19 +726,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
+    "C:\\Users\\DTC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ADMIN\\source\\repos\\MISA.Web\\MISA.Web.Api\\MISA.Web.Api.csproj",
+      "projectUniqueName": "C:\\Users\\DTC\\Desktop\\MISA.Web\\MISA.Web.Api\\MISA.Web.Api.csproj",
       "projectName": "MISA.Web.Api",
-      "projectPath": "C:\\Users\\ADMIN\\source\\repos\\MISA.Web\\MISA.Web.Api\\MISA.Web.Api.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ADMIN\\source\\repos\\MISA.Web\\MISA.Web.Api\\obj\\",
+      "projectPath": "C:\\Users\\DTC\\Desktop\\MISA.Web\\MISA.Web.Api\\MISA.Web.Api.csproj",
+      "packagesPath": "C:\\Users\\DTC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DTC\\Desktop\\MISA.Web\\MISA.Web.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DTC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

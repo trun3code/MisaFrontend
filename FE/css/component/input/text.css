@@ -1,4 +1,4 @@
-.text-input {
+.text-input,option {
     height: 36px;
     font-size: 1.4rem;
     line-height: 2.2rem;

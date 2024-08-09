@@ -177,23 +177,18 @@
                 <div class="row">
                   <div class="col col-10">
                     <div class="label">
-                      <label class="label-name" for="">Vị trí</label>
+                      <label class="label-name" for="position">Vị trí</label>
                       <div class="required"></div>
                     </div>
-                    <input
-                      required
-                      class="text-input"
-                      type="text"
-                      name="position"
-                    />
+                    <select required class="text-input" type="text" name="position" id="position"></select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col col-10">
                     <div class="label">
-                      <label class="label-name" for="">Phòng ban</label>
+                      <label class="label-name" for="department">Phòng ban</label>
                     </div>
-                    <input class="text-input" type="text" name="department" />
+                    <select class="text-input" type="text" name="department" id="department" ></select>
                   </div>
                 </div>
               </div>
@@ -215,7 +210,7 @@
                         class="radio-input"
                         name="gender"
                         value="Nam"
-                        id="male"
+                        id="0"
                       />
                       <label class="label-name" for="male">Nam</label>
                       <input
@@ -223,7 +218,7 @@
                         class="radio-input"
                         name="gender"
                         value="Nữ"
-                        id="female"
+                        id="1"
                       />
                       <label class="label-name" for="female">Nữ</label>
                       <input
@@ -231,7 +226,7 @@
                         class="radio-input"
                         name="gender"
                         value="Khác"
-                        id="other"
+                        id="2"
                       />
                       <label class="label-name" for="other">Khác</label>
                     </div>
